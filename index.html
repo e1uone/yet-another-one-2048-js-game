@@ -7,7 +7,60 @@
     <title>2048</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header class="header">
+        <div class="header__top">
+          <h1>2048</h1>
+
+          <div>
+            <div class="header__score header__score--current">
+              Счёт:
+              <span id="current-score">0</span>
+            </div>
+            <div class="header__score header__score--best">
+              Лучший результат
+              <span id="best-score">0</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="header__bottom">
+          <button type="reset" class="retry-button">Заново</button>
+        </div>
+      </header>
+
+      <div class="game">
+        <div class="grid">
+          <div class="grid__row">
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+          </div>
+
+          <div class="grid__row">
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+          </div>
+
+          <div class="grid__row">
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+          </div>
+
+          <div class="grid__row">
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+            <div class="grid__cell"></div>
+          </div>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

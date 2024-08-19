@@ -1,0 +1,15 @@
+.retry-button {
+  font-family: inherit;
+  font-size: 1.125rem;
+  line-height: 1;
+  color: var(--text-white);
+  text-transform: uppercase;
+  display: block;
+  padding: 0.8rem 1.25rem 0.7rem;
+  border: 0;
+  background: var(--color-brown);
+  border-radius: 0.25rem;
+  cursor: pointer;
+  box-shadow: none;
+  appearance: none;
+}

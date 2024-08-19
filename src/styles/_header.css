@@ -1,0 +1,27 @@
+.header {
+  .header__top,
+  .header__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-bottom: 1rem;
+  }
+
+  .header__top {
+    h1 {
+      margin-right: auto;
+    }
+  }
+
+  .header__score.header__score--current {
+    margin-right: 1rem;
+    > span {
+      color: blue;
+    }
+  }
+  .header__score.header__score--best {
+    > span {
+      color: red;
+    }
+  }
+}
