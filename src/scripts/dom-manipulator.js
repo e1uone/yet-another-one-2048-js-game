@@ -49,6 +49,8 @@ export default class DOMManipulator {
 
   startNewGame = () => {
     localStorage.setItem(this.#storageKey, "0");
+    this.#updateScore();
+    this.#updateHiscore();
     this.#hideGameResult();
   };
 
