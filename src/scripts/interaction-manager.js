@@ -1,13 +1,18 @@
 export default class InteractionManager {
   #events = {};
-  constructor() {
+  #retryButton;
+  #newGameButton;
+  constructor(options) {
     this.events = {};
-
+    this.#retryButton = options.retryButton;
+    this.#newGameButton = options.newGameButton;
     this.setupListeners();
   }
 
   setupListeners() {
     this.#bindKeyboardEvents();
+    this.#bindRestart();
+    this.#bindStartNewGame();
   }
 
   on = (event, callback) => {
@@ -25,6 +30,13 @@ export default class InteractionManager {
     }
 
     callbacks.forEach((callback) => callback(data));
+  };
+
+  #restart = () => {
+    this.emit("restart");
+  };
+  #startNewGame = () => {
+    this.emit("startNewGame");
   };
 
   #bindKeyboardEvents = () => {
@@ -46,5 +58,16 @@ export default class InteractionManager {
           break;
       }
     });
+  };
+
+  #bindRestart = () => {
+    this.#retryButton.addEventListener("click", this.#restart.bind(this));
+  };
+
+  #bindStartNewGame = () => {
+    this.#newGameButton.addEventListener(
+      "click",
+      this.#startNewGame.bind(this),
+    );
   };
 }

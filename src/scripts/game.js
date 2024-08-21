@@ -18,9 +18,14 @@ export default class Game {
     this.#startTiles = startTiles;
 
     this.#domManipulator = new DOMManipulator();
-    this.#interactionManager = new InteractionManager();
+    this.#interactionManager = new InteractionManager({
+      retryButton: document.querySelector("#retry-button"),
+      newGameButton: document.querySelector("#new-game-button"),
+    });
 
     this.#interactionManager.on("move", this.#move);
+    this.#interactionManager.on("restart", this.#restart);
+    this.#interactionManager.on("startNewGame", this.#startNewGame);
 
     this.#initialize();
   }
@@ -36,10 +41,15 @@ export default class Game {
     this.#updateView();
   };
 
-  // #restart = () => {
-  //   this.domManipulator.restart();
-  //   this.#initialize();
-  // };
+  #restart = () => {
+    this.#domManipulator.restart();
+    this.#initialize();
+  };
+
+  #startNewGame = () => {
+    this.#domManipulator.startNewGame();
+    this.#initialize();
+  };
 
   #renderStartTiles = () => {
     for (let i = 0; i < this.#startTiles; i++) {
@@ -68,9 +78,14 @@ export default class Game {
 
     this.#domManipulator.update(this.#grid, {
       score: this.#score,
-      isOver: this.#isGameOver,
+      isGameOver: this.#isGameOver,
       isWin: this.#isWin,
     });
+
+    const preEl = document.querySelector("#debug");
+    if (preEl) {
+      // preEl.textContent = JSON.stringify(this.#isGameOver, null, 2);
+    }
   };
 
   #prepareTilesForMerge = () => {
@@ -232,12 +247,14 @@ export default class Game {
 
     this.#prepareTilesForMerge();
 
-    // The following block of code is responsible for moving and merging tiles in the game board.
-    // - It iterates over each cell in the game grid and checks if there is a tile present in that cell.
-    // - If there is a tile, it determines the farthest position the tile can be moved to in the given direction.
-    // - If the farthest position is different from the current cell, it moves the tile to the farthest position.
-    // - If two tiles with the same value are adjacent after the move, they are merged into a single tile with double the value.
-    // - The process continues until no more tiles can be moved or merged.
+    /**
+     *  The following block of code is responsible for moving and merging tiles in the game board.
+        - It iterates over each cell in the game grid and checks if there is a tile present in that cell.
+        - If there is a tile, it determines the farthest position the tile can be moved to in the given direction.
+        - If the farthest position is different from the current cell, it moves the tile to the farthest position.
+        - If two tiles with the same value are adjacent after the move, they are merged into a single tile with double the value.
+        - The process continues until no more tiles can be moved or merged.
+    */
     traversals.x.forEach((x) => {
       traversals.y.forEach((y) => {
         cell = { x: x, y: y };

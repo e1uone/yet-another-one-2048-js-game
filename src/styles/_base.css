@@ -31,3 +31,30 @@ h1 {
   cursor: default;
   user-select: none;
 }
+
+.game__result {
+  display: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+  font-weight: 700;
+  color: #776e65;
+  background: rgba(238, 228, 218, 0.73);
+  animation: fade-in 600ms ease 1000ms;
+  animation-fill-mode: both;
+  z-index: 100;
+
+  .retry-button {
+    margin: 20px 0;
+  }
+}
+
+.game__result--show {
+  display: flex;
+}

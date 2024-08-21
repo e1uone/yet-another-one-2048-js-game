@@ -11,7 +11,6 @@
       <header class="header">
         <div class="header__top">
           <h1>2048</h1>
-
           <div>
             <div class="header__score header__score--current">
               Счёт:
@@ -25,7 +24,9 @@
         </div>
 
         <div class="header__bottom">
-          <button type="reset" class="retry-button">Заново</button>
+          <button type="reset" class="retry-button" id="new-game-button">
+            New Game
+          </button>
         </div>
       </header>
 
@@ -62,10 +63,16 @@
         <div id="tiles" class="game__tiles tiles">
           <!-- there will be a .tile class for each tile -->
         </div>
+        <div id="result-container" class="game__result">
+          <span id="result-text"></span>
+          <button type="reset" id="retry-button" class="retry-button">
+            Try again
+          </button>
+        </div>
       </div>
     </div>
 
-    <!-- <pre id="debug"></pre> -->
+    <pre id="debug"></pre>
     <script type="module" src="/main.js"></script>
   </body>
 </html>

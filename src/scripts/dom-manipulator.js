@@ -2,6 +2,7 @@ export default class DOMManipulator {
   #tileContainer;
   #scoreContainer;
   #hiscoreContainer;
+  #resultContainer;
   #storageKey;
 
   score = 0;
@@ -10,6 +11,7 @@ export default class DOMManipulator {
     this.#tileContainer = document.querySelector("#tiles");
     this.#scoreContainer = document.querySelector("#current-score");
     this.#hiscoreContainer = document.querySelector("#hiscore");
+    this.#resultContainer = document.querySelector("#result-container");
     this.#storageKey = "hiscore";
 
     this.score = 0;
@@ -29,13 +31,25 @@ export default class DOMManipulator {
         });
       });
 
-      // const preEl = document.querySelector("#debug");
-      // if (preEl) {
-      //   preEl.textContent = JSON.stringify(grid, null, 2);
-      // }
+      if (meta.isGameOver) {
+        this.#showGameResult(false);
+      }
+
+      if (meta.isWin) {
+        this.#showGameResult(true);
+      }
 
       this.#updateScore(meta.score);
     });
+  };
+
+  restart = () => {
+    this.#hideGameResult();
+  };
+
+  startNewGame = () => {
+    localStorage.setItem(this.#storageKey, "0");
+    this.#hideGameResult();
   };
 
   #addTile = (tile) => {
@@ -149,5 +163,15 @@ export default class DOMManipulator {
     }
 
     this.#hiscoreContainer.textContent = localStorage.getItem(this.#storageKey);
+  };
+
+  #showGameResult = (isWin) => {
+    this.#resultContainer.classList.add("game__result--show");
+    this.#resultContainer.querySelector("#result-text").textContent = isWin
+      ? "You won!"
+      : "Game over!";
+  };
+  #hideGameResult = () => {
+    this.#resultContainer.classList.remove("game__result--show");
   };
 }
