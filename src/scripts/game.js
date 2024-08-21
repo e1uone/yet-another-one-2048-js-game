@@ -196,8 +196,6 @@ export default class Game {
   #tileMatchesAvailable = () => {
     let tile;
 
-    console.log("?");
-
     for (let x = 0; x < this.#size; x++) {
       for (let y = 0; y < this.#size; y++) {
         tile = this.#grid.getCellContent({ x, y });
@@ -221,8 +219,6 @@ export default class Game {
         }
       }
     }
-
-    console.log("no matches");
 
     return false;
   };
