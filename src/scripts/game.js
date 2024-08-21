@@ -196,20 +196,23 @@ export default class Game {
   #tileMatchesAvailable = () => {
     let tile;
 
-    for (let x = 0; x < this.size; x++) {
-      for (let y = 0; y < this.size; y++) {
+    console.log("?");
+
+    for (let x = 0; x < this.#size; x++) {
+      for (let y = 0; y < this.#size; y++) {
         tile = this.#grid.getCellContent({ x, y });
 
         if (!tile) {
           continue;
         }
 
-        for (let direction = 0; direction < this.size; direction++) {
-          const coordinatesVector = this.getCoordinatesVector(direction);
+        for (let direction of ["up", "right", "down", "left"]) {
+          const coordinatesVector = this.#getCoordinatesVector(direction);
           const cell = {
             x: x + coordinatesVector.x,
             y: y + coordinatesVector.y,
           };
+
           const other = this.#grid.getCellContent(cell);
 
           if (other && other.value === tile.value) {
@@ -218,6 +221,8 @@ export default class Game {
         }
       }
     }
+
+    console.log("no matches");
 
     return false;
   };
