@@ -46,7 +46,7 @@ export default class DOMManipulator {
     this.#setTileColor(
       element,
       this.#getTileColor(tile.value),
-      tile.value > 8 ? "#fff" : "#000",
+      tile.value >= 8 ? "#f9f6f2" : "#776e65",
     );
 
     this.#setTilePosition(

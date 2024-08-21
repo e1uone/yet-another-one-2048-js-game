@@ -17,20 +17,20 @@
   font-weight: 700;
   position: absolute;
   z-index: 3;
-  border-radius: 0.75rem;
+  border-radius: 0.5rem;
   top: calc(var(--y-pos) * 25%);
   left: calc(var(--x-pos) * 25%);
-  transition: 0.4s ease-in-out;
+  transition: 100ms ease-in-out;
   transition-property: top, left;
 }
 
 .tile-new {
-  animation: appear 0.2s ease 0.4s;
+  animation: appear 0.1s ease 0.1s;
   animation-fill-mode: both;
 }
 
 .tile-merged {
   z-index: 10;
-  animation: pop 0.2s ease 0.4s;
+  animation: pop 0.1s ease 0.1s;
   animation-fill-mode: both;
 }

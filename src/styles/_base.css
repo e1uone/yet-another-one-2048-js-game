@@ -4,20 +4,20 @@ body {
   font-size: 1rem;
   line-height: 1.25;
   color: #776e65;
+  background-color: #faf8ef;
   height: 100%;
   padding: 0;
   margin: 0;
-  background-color: #fff;
 }
 
 h1 {
-  font-size: 2.5rem;
-  line-height: 1;
+  font-size: 5rem;
+  line-height: 1.5;
   margin: 0;
 }
 
 #app {
-  max-width: 36rem;
+  max-width: 33rem;
   padding: 1rem;
   margin: 0 auto;
 }
