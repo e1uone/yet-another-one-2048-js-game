@@ -13,6 +13,8 @@ export default class DOMManipulator {
     this.#storageKey = "hiscore";
 
     this.score = 0;
+
+    this.#updateHiscore();
   }
 
   update = (grid, meta) => {
