@@ -13,15 +13,11 @@
     }
   }
 
-  .header__score.header__score--current {
-    margin-right: 1rem;
-    > span {
-      color: blue;
-    }
-  }
-  .header__score.header__score--best {
-    > span {
-      color: red;
-    }
+  .header__score-block {
+    margin-left: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 1rem;
   }
 }

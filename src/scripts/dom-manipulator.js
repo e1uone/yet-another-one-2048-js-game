@@ -9,7 +9,7 @@ export default class DOMManipulator {
 
   constructor() {
     this.#tileContainer = document.querySelector("#tiles");
-    this.#scoreContainer = document.querySelector("#current-score");
+    this.#scoreContainer = document.querySelector("#current-score-container");
     this.#hiscoreContainer = document.querySelector("#hiscore");
     this.#resultContainer = document.querySelector("#result-container");
     this.#storageKey = "hiscore";
@@ -135,16 +135,16 @@ export default class DOMManipulator {
 
     this.score = score;
 
-    this.#clearContainer(this.#scoreContainer);
-    this.#scoreContainer.textContent = this.score.toString();
+    this.#scoreContainer.querySelector(".score__value").textContent = score;
 
     if (difference > 0) {
-      const addition = document.createElement("span");
+      // TODO: add score difference animation
+      // const addition = document.createElement("span");
 
-      addition.classList.add("score-addition");
-      addition.textContent = "+" + difference;
+      // addition.classList.add("score-addition");
+      // addition.textContent = "+" + difference;
 
-      this.#scoreContainer.appendChild(addition);
+      // this.#scoreContainer.appendChild(addition);
 
       this.#updateHiscore();
     }

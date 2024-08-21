@@ -1,0 +1,26 @@
+.score {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-transform: uppercase;
+  background-color: var(--color-brown-0);
+  padding: 0.5rem 1.5rem;
+  border-radius: 5px;
+  height: 50px;
+
+  .score__title {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--text-white-1);
+  }
+  .score__value {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-white-0);
+    animation: slide-in-up 0.1s ease 0.1s;
+    animation-fill-mode: both;
+  }
+  .score__value--slide-out {
+    animation: slide-out-up 0.1s ease 0.1s;
+  }
+}

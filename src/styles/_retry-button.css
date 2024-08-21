@@ -2,8 +2,8 @@
   font-family: inherit;
   font-size: 1.125rem;
   line-height: 1;
-  color: var(--text-white);
-  background: var(--color-dark-brown);
+  color: var(--text-white-0);
+  background: var(--color-brown-3);
   text-transform: uppercase;
   display: block;
   padding: 0.7rem 1.25rem;
