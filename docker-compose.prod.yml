@@ -1,0 +1,7 @@
+services:
+  server:
+    build: .
+    image: 2048-app
+    ports:
+      - 4173:4173
+    command: yarn preview
