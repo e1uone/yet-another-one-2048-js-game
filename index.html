@@ -19,7 +19,7 @@
             </div>
             <div class="header__score header__score--best">
               Лучший результат
-              <span id="best-score">0</span>
+              <span id="hiscore">0</span>
             </div>
           </div>
         </div>
@@ -30,7 +30,7 @@
       </header>
 
       <div class="game">
-        <div class="grid">
+        <div class="game__grid grid">
           <div class="grid__row">
             <div class="grid__cell"></div>
             <div class="grid__cell"></div>
@@ -59,8 +59,13 @@
             <div class="grid__cell"></div>
           </div>
         </div>
+        <div id="tiles" class="game__tiles tiles">
+          <!-- there will be a .tile class for each tile -->
+        </div>
       </div>
     </div>
+
+    <!-- <pre id="debug"></pre> -->
     <script type="module" src="/main.js"></script>
   </body>
 </html>

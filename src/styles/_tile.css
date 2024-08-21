@@ -1,0 +1,36 @@
+.tiles {
+  width: calc(100% - 1rem);
+  height: calc(100% - 1rem);
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  z-index: 2;
+}
+
+.tile {
+  width: calc(25% - 1rem);
+  padding-bottom: calc(25% - 1rem);
+  height: 0;
+  font-size: 3.3rem;
+  line-height: 2.4;
+  text-align: center;
+  font-weight: 700;
+  position: absolute;
+  z-index: 3;
+  border-radius: 0.75rem;
+  top: calc(var(--y-pos) * 25%);
+  left: calc(var(--x-pos) * 25%);
+  transition: 0.4s ease-in-out;
+  transition-property: top, left;
+}
+
+.tile-new {
+  animation: appear 0.2s ease 0.4s;
+  animation-fill-mode: both;
+}
+
+.tile-merged {
+  z-index: 10;
+  animation: pop 0.2s ease 0.4s;
+  animation-fill-mode: both;
+}
