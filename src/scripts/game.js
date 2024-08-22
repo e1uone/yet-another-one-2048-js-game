@@ -18,8 +18,10 @@ export default class Game {
     this.#startTiles = startTiles;
 
     this.#domManipulator = new DOMManipulator();
+
     this.#interactionManager = new InteractionManager({
       retryButton: document.querySelector("#retry-button"),
+      gameContainer: document.querySelector("#game-container"),
       newGameButton: document.querySelector("#new-game-button"),
     });
 

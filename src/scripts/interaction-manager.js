@@ -1,9 +1,13 @@
+import * as Hammer from "hammerjs";
+
 export default class InteractionManager {
   #events = {};
+  #gameContainer;
   #retryButton;
   #newGameButton;
   constructor(options) {
     this.events = {};
+    this.#gameContainer = options.gameContainer;
     this.#retryButton = options.retryButton;
     this.#newGameButton = options.newGameButton;
     this.setupListeners();
@@ -11,6 +15,7 @@ export default class InteractionManager {
 
   setupListeners() {
     this.#bindKeyboardEvents();
+    this.#bindTouchEvents();
     this.#bindRestart();
     this.#bindStartNewGame();
   }
@@ -30,6 +35,34 @@ export default class InteractionManager {
     }
 
     callbacks.forEach((callback) => callback(data));
+  };
+
+  #bindTouchEvents = () => {
+    const handler = new Hammer.Manager(this.#gameContainer, {
+      recognizers: [
+        [
+          Hammer.Swipe,
+          {
+            direction: Hammer.DIRECTION_ALL,
+          },
+        ],
+      ],
+    });
+
+    const gesturesMap = {
+      [Hammer.DIRECTION_UP]: "up",
+      [Hammer.DIRECTION_RIGHT]: "right",
+      [Hammer.DIRECTION_DOWN]: "down",
+      [Hammer.DIRECTION_LEFT]: "left",
+    };
+
+    handler.on("swipe", (event) => {
+      event.preventDefault();
+
+      if (Object.keys(gesturesMap).includes(event.offsetDirection.toString())) {
+        this.emit("move", gesturesMap[event.offsetDirection]);
+      }
+    });
   };
 
   #restart = () => {
