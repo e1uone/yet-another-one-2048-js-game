@@ -291,7 +291,7 @@ export default class Game {
 
             // The mighty 2048 tile
             if (mergedTile.value === 2048) {
-              this.won = true;
+              this.#isWin = true;
             }
           } else {
             this.#slideTile(tile, farthestPosition);
