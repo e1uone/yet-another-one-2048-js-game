@@ -3,6 +3,11 @@ import DOMManipulator from "./dom-manipulator";
 import Tile from "./tile";
 import InteractionManager from "./interaction-manager";
 
+/**
+ * 2048 Game class
+ * @param {number} size The size of the grid
+ * @param {number} [startTiles=2] The number of tiles to start the game with
+ */
 export default class Game {
   #size;
   #score = 0;
@@ -32,6 +37,9 @@ export default class Game {
     this.#initialize();
   }
 
+  /**
+   * Initializes the game.
+   */
   #initialize = () => {
     this.#grid = new Grid(this.#size);
 
@@ -43,22 +51,34 @@ export default class Game {
     this.#updateView();
   };
 
+  /**
+   * Restarts the game.
+   */
   #restart = () => {
     this.#domManipulator.restart();
     this.#initialize();
   };
 
+  /**
+   *  Resets high score and starts a new game
+   */
   #startNewGame = () => {
     this.#domManipulator.startNewGame();
     this.#initialize();
   };
 
+  /**
+   * Renders the start tiles.
+   */
   #renderStartTiles = () => {
     for (let i = 0; i < this.#startTiles; i++) {
       this.#addRandomTile();
     }
   };
 
+  /**
+   * Adds a random tile to the grid.
+   */
   #addRandomTile = () => {
     if (!this.#grid || !this.#grid.hasCellsAvailable()) {
       return;
@@ -73,6 +93,9 @@ export default class Game {
     this.#grid.insertTile(tile);
   };
 
+  /**
+   * Updates the view with the current state of the game.
+   */
   #updateView = () => {
     if (!this.#grid) {
       return;
@@ -83,13 +106,11 @@ export default class Game {
       isGameOver: this.#isGameOver,
       isWin: this.#isWin,
     });
-
-    const preEl = document.querySelector("#debug");
-    if (preEl) {
-      // preEl.textContent = JSON.stringify(this.#isGameOver, null, 2);
-    }
   };
-
+  /**
+   * Prepares the tiles for merging by clearing out the mergedFrom
+   * property on each cell in the grid.
+   */
   #prepareTilesForMerge = () => {
     if (!this.#grid) {
       return;
@@ -102,7 +123,12 @@ export default class Game {
       }
     });
   };
-  // Get vectors by direction
+  /**
+   * Returns the vector coordinates based on the given direction.
+   *
+   * @param {string} direction - The direction.
+   * @return {Object} The vector coordinates.
+   */
   #getCoordinatesVector = (direction) => {
     const map = {
       up: { x: 0, y: -1 },
@@ -132,7 +158,7 @@ export default class Game {
       traversals.y.push(pos);
     }
 
-    // Always traverse from the farthest cell in the chosen direction :)
+    // Always traverse from the farthest cell in the chosen direction
     if (coordinatesVector.x === 1) {
       traversals.x = traversals.x.reverse();
     }

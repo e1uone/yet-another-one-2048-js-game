@@ -4,11 +4,11 @@ A JavaScript implementation of the popular puzzle game 2048, faithfully reproduc
 
 > 2048 is a single-player sliding block puzzle game where the player's objective is to slide numbered tiles on a grid to combine them and create a tile with the value of 2048.
 
-## Play it now:
+## Play it now
 
 [Go website](https://yet-another-one-2048-js-game.vercel.app/)
 
-## Usage with Docker:
+## Usage with Docker
 
 - Serve development build:
 

@@ -1,5 +1,13 @@
 import * as Hammer from "hammerjs";
 
+/**
+ * The interaction manager is responsible for binding events to the game container and retry button.
+ *
+ * @param {Object} options The options object with the following properties:
+ *                          - `gameContainer`: The game container element.
+ *                          - `retryButton`: The retry button element.
+ *                          - `retryButton`: The new game button element.
+ */
 export default class InteractionManager {
   #events = {};
   #gameContainer;
@@ -13,6 +21,9 @@ export default class InteractionManager {
     this.setupListeners();
   }
 
+  /**
+   * Sets up all the event listeners for the game interactions.
+   */
   setupListeners() {
     this.#bindKeyboardEvents();
     this.#bindTouchEvents();
@@ -20,6 +31,12 @@ export default class InteractionManager {
     this.#bindStartNewGame();
   }
 
+  /**
+   * Registers a callback function to be called when the specified event is emitted.
+   *
+   * @param {string} event - The name of the event to listen for.
+   * @param {Function} callback - The function to be called when the event is emitted.
+   */
   on = (event, callback) => {
     if (!this.#events[event]) {
       this.#events[event] = [];
@@ -27,6 +44,12 @@ export default class InteractionManager {
     this.#events[event].push(callback);
   };
 
+  /**
+   * Emits an event to all registered listeners.
+   *
+   * @param {string} event - The name of the event to emit.
+   * @param {*} data - The data to be passed to the registered listeners.
+   */
   emit = (event, data) => {
     const callbacks = this.#events[event];
 
@@ -37,6 +60,9 @@ export default class InteractionManager {
     callbacks.forEach((callback) => callback(data));
   };
 
+  /**
+   * Binds touch events to the game container.
+   */
   #bindTouchEvents = () => {
     const handler = new Hammer.Manager(this.#gameContainer, {
       recognizers: [
@@ -57,6 +83,7 @@ export default class InteractionManager {
     };
 
     handler.on("swipe", (event) => {
+      event.srcEvent.stopPropagation();
       event.preventDefault();
 
       if (Object.keys(gesturesMap).includes(event.offsetDirection.toString())) {
@@ -65,13 +92,27 @@ export default class InteractionManager {
     });
   };
 
+  /**
+   * Emits a "restart" event.
+   */
   #restart = () => {
     this.emit("restart");
   };
+
+  /**
+   * Emits a "startNewGame" event.
+   */
   #startNewGame = () => {
     this.emit("startNewGame");
   };
 
+  /**
+   * Binds keyboard event listeners.
+   *
+   * This method sets up event listeners for the arrow keys
+   * When the user presses an arrow key, it emits a "move" event with the
+   * direction of the arrow key.
+   */
   #bindKeyboardEvents = () => {
     document.addEventListener("keydown", (event) => {
       switch (event.key) {
@@ -93,10 +134,20 @@ export default class InteractionManager {
     });
   };
 
+  /**
+   * Binds the click event listener to the retry button.
+   *
+   * When the retry button is clicked, it emits a "restart" event.
+   */
   #bindRestart = () => {
     this.#retryButton.addEventListener("click", this.#restart.bind(this));
   };
 
+  /**
+   * Binds the click event listener to the new game button.
+   *
+   * When the new game button is clicked, it emits a "startNewGame" event.
+   */
   #bindStartNewGame = () => {
     this.#newGameButton.addEventListener(
       "click",
