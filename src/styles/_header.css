@@ -2,14 +2,20 @@
   .header__top,
   .header__bottom {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: flex-end;
     padding-bottom: 1rem;
   }
 
-  .header__top {
-    h1 {
-      margin-right: auto;
+  .header__info-block {
+    margin-right: auto;
+
+    p {
+      font-size: 1.1rem;
+    }
+    span {
+      font-weight: 700;
+      text-decoration: underline;
     }
   }
 

@@ -12,7 +12,7 @@ body {
 
 h1 {
   font-size: 5rem;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   margin: 0;
 }
 
@@ -28,7 +28,7 @@ h1 {
   box-sizing: border-box;
   background: #bbada0;
   border-radius: 0.5rem;
-  cursor: default;
+  cursor: grab;
   user-select: none;
 }
 

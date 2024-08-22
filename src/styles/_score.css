@@ -1,4 +1,5 @@
 .score {
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,7 +7,7 @@
   background-color: var(--color-brown-0);
   padding: 0.5rem 1.5rem;
   border-radius: 5px;
-  height: 50px;
+  min-width: 88px;
 
   .score__title {
     font-size: 0.9rem;
